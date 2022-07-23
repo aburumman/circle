@@ -6,10 +6,10 @@ jobs:
   print_hello:
     docker: 
       - image: circleci/node:13.8.0
-      steps:
-        - run:
-            name: "hello"
-            command: "echo hello"
+    steps:
+      - run:
+          name: "hello"
+          command: "echo hello"
   print_world:
     docker: 
       - image: circleci/node:13.8.0
