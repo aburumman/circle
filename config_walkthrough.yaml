@@ -6,11 +6,11 @@ jobs:
   say-hello:
     docker:
       - image: cimg/base:stable
-     steps:
-       - checkout
-       - run:
-           name: "Say Hello"
-           command: "echo Hello, world" 
+    steps:
+      - checkout
+      - run:
+          name: "Say Hello"
+          command: "echo Hello, world" 
 
 workflow: 
   say-hello-workflow:
