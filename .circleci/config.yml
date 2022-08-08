@@ -34,10 +34,29 @@ jobs:
           name: Run Playbook and Configure server
           command: |
             ansible-playbook -i xxxxxx  main.yml 
+   smoke_test_job:
+     docker: 
+        - image: alpine:latest
+     steps: 
+        - run: apk add --update curl
+        - run:
+            name: smoke test
+            command: |
+              URL="https://google.com"
+              if curl -s --head $URL
+              then
+                echo "it worked"
+                return 0
+              else
+                echo "IT failed"
+                return 1
+              fi
+
 # Sequential workflow
 workflows:
   # Name the workflow
   myWorkflow:
     jobs:
-      #- create_infrastructure 
-      - configure_infrastructure
+      #- create_infrastructure
+      - smoke_test_job 
+      # configure_infrastructure
