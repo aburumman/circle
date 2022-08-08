@@ -19,9 +19,9 @@ jobs:
                 --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} \
                 --region us-east-1
   configure_infrastructure:
-        docker:
-          - image: python:3.7-alpine3.11
-        steps:
+      docker:
+        - image: python:3.7-alpine3.11
+      steps:
         - checkout
         - add_ssh_keys:
             # You can get this ID in the section where you registered the SSH Key
@@ -34,10 +34,10 @@ jobs:
           name: Run Playbook and Configure server
           command: |
             ansible-playbook -i xxxxxx  main.yml 
-   smoke_test_job:
-     docker: 
+  smoke_test_job:
+      docker: 
         - image: alpine:latest
-     steps: 
+      steps: 
         - run: apk add --update curl
         - run:
             name: smoke test
