@@ -44,7 +44,7 @@ jobs:
               if curl -s --head $URL
               then
                 echo "it worked"
-                return 1 
+                return 0 
               else
                 echo "IT failed"
                 return 1
