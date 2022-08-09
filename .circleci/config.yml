@@ -65,8 +65,8 @@ jobs:
         - image: alpine:latest
       steps:
         - run:
-          name: Test job
-          command: return 1
+                 name: Test job
+                 command: return 1
 
         - destroy_environment
 
