@@ -63,9 +63,9 @@ jobs:
       docker:
         - image: amazon/aws-cli
       steps:
-        - run:
-                 name: Test job
-                 command: return 1
+        #- run:
+        #         name: Test job
+        #         command: return 1
         - destroy_environment
 
 
@@ -74,5 +74,5 @@ workflows:
     jobs:
       - create_infrastructure
       #- smoke_test_job 
-      - smoke_test_2
+      #- smoke_test_2
       # configure_infrastructure
