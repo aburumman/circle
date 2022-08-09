@@ -61,14 +61,14 @@ jobs:
                 return 1
               fi
   smoke_test_2:
-    docker:
-      - image: alpine:latest
-    steps:
-      - run:
-        name: Test job
-        command: return 1
+      docker:
+        - image: alpine:latest
+      steps:
+        - run:
+          name: Test job
+          command: return 1
 
-      - destroy_environment
+        - destroy_environment
 
 workflows:
   myWorkflow:
