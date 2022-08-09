@@ -1,6 +1,12 @@
 version: 2.1
 
 commands:
+  print_pipeline_id:
+    parameters:
+      id:
+        type: string
+    steps:
+      - run: echo << parameters.id >>
   destroy_environment:
     steps:
       - run:
@@ -59,6 +65,18 @@ jobs:
                 echo "IT failed"
                 return 1
               fi
+  create_and_deploy_front_end:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          name: Execute bucket.yml - Create Cloudformation Stack
+          command: |
+            aws cloudformation deploy \
+            --template-file bucket.yml \
+            --stack-name stack-create-bucket-${CIRCLE_WORKFLOW_ID:0:7} \
+            --parameter-overrides MyBucketName="my-august-bucket-${CIRCLE_WORKFLOW_ID:0:7}"
   smoke_test_2:
       docker:
         - image: amazon/aws-cli
@@ -67,6 +85,7 @@ jobs:
         #         name: Test job
         #         command: return 1
         - destroy_environment
+
 
 
 workflows:
