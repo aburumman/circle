@@ -59,20 +59,12 @@ jobs:
                 echo "IT failed"
                 return 1
               fi
-  smoke_test_2:
-      docker:
-        - image: alpine:latest
-      steps:
-        - run:
-                 name: Test job
-                 command: return 1
 
-        - destroy_environment
 
 workflows:
   myWorkflow:
     jobs:
-      - create_infrastructure
+      #- create_infrastructure
       #- smoke_test_job 
-      - smoke_test_2
+      #- smoke_test_2
       # configure_infrastructure
